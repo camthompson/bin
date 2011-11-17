@@ -9,7 +9,7 @@ puts "Updating Ruby gems"
 `gem update`
 
 puts "Updating Homebrew recipes"
-`brew update && brew upgrade outdated`
+`brew update && brew upgrade`
 
 puts "Updating RVM"
 `rvm get head && rvm reload`

@@ -1,10 +1,5 @@
 #!/usr/bin/env ruby
 
-def push_to_github()
-  `git commit -am 'Plugin update'`
-  `git push`
-end
-
 puts "Updating Ruby gems"
 `gem update`
 
@@ -15,8 +10,6 @@ puts "Updating RVM"
 `rvm get head && rvm reload`
 
 puts "Updating Vim plugins"
-Dir.chdir(File.expand_path("~/.vim")) do
-  `./plugin_update`
-  a = `git status`
-  push_to_github unless a =~ /nothing to commit/
+Dir.chdir(File.expand_path("~/src/vimbundles")) do
+  `./update`
 end

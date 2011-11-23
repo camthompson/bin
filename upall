@@ -10,6 +10,6 @@ puts "Updating RVM"
 `rvm get head && rvm reload`
 
 puts "Updating Vim plugins"
-Dir.chdir(File.expand_path("~/src/vimbundles")) do
+Dir.chdir(File.expand_path("~/.vim")) do
   `./update`
 end

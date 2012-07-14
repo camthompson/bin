@@ -1,15 +1,15 @@
 #!/usr/bin/env ruby
 
-puts "Updating Ruby gems"
+puts "# Updating Ruby gems"
 system('gem update')
 
-puts "Updating Homebrew recipes"
+puts "# Updating Homebrew recipes"
 system('brew update && brew upgrade')
 
-puts "Updating RVM"
+puts "# Updating RVM"
 `rvm get head && rvm reload`
 
-puts "Updating Vim plugins"
+puts "# Updating Vim plugins"
 Dir.chdir(File.expand_path("~/.vim")) do
   system('./update')
 end

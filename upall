@@ -8,5 +8,5 @@ system('brew update && brew upgrade')
 
 puts "# Updating Vim plugins"
 Dir.chdir(File.expand_path("~/src/dotfiles")) do
-  system('vim/update')
+  system('./update')
 end

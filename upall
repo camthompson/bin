@@ -1,12 +1,26 @@
-#!/usr/bin/env ruby
+#!/bin/bash
 
-puts "# Updating Ruby gems"
-system('gem update')
+set -e
 
-puts "# Updating Homebrew recipes"
-system('brew update && brew upgrade')
+if [[ ! "$OSTYPE" == darwin* ]]; then
+  return
+fi
 
-puts "# Updating Vim plugins"
-Dir.chdir(File.expand_path("~/src/dotfiles")) do
-  system('./update')
-end
+echo '# Updating rubygems'
+gem update --system
+gem update
+
+echo '# Updating Homebrew'
+brew update
+brew upgrade
+
+echo '# Updating Vim and ZSH plugins'
+cd "$HOME"/src/dotfiles
+./update
+
+echo '# Updating MacVim'
+cd "$HOME"/src/vendor/macvim
+git pull
+make
+rm -rf /Applications/MacVim.app/
+mv "$HOME"/src/vendor/macvim/src/MacVim/build/release/MacVim.app /Applications/

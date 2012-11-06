@@ -8,21 +8,26 @@ fi
 
 echo '# Updating rbenv'
 rbenv update
+echo '####################'
 
 echo '# Updating heroku'
 heroku update
+echo '####################'
 
 echo '# Updating rubygems'
 gem update --system
 gem update
+echo '####################'
 
 echo '# Updating Homebrew'
 brew update
 brew upgrade
+echo '####################'
 
 echo '# Updating Vim and ZSH plugins'
 cd "$HOME"/src/dotfiles
 ./update
+echo '####################'
 
 echo '# Updating MacVim'
 cd "$HOME"/src/vendor/macvim

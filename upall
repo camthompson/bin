@@ -6,6 +6,12 @@ if [[ ! "$OSTYPE" == darwin* ]]; then
   return
 fi
 
+echo '# Updating rbenv'
+rbenv update
+
+echo '# Updating heroku'
+heroku update
+
 echo '# Updating rubygems'
 gem update --system
 gem update

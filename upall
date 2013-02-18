@@ -7,7 +7,13 @@ if [[ ! "$OSTYPE" == darwin* ]]; then
 fi
 
 echo '# Updating rbenv'
-rbenv update
+cd "$HOME/.rbenv"
+git pull
+for d in $HOME/.rbenv/plugins/*; do
+	cd $d
+	git pull
+done
+cd
 echo '####################'
 
 echo '# Updating heroku'

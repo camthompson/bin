@@ -11,6 +11,7 @@ cd "$HOME/.rbenv"
 git pull
 for d in $HOME/.rbenv/plugins/*; do
 	cd $d
+	echo Updating $d
 	git pull
 done
 cd

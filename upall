@@ -33,7 +33,6 @@ make clean
 make
 rm -rf /Applications/MacVim.app/
 mv "$HOME"/src/vendor/macvim/src/MacVim/build/release/MacVim.app /Applications/
-mv -f /Applications/MacVim.app/Contents/MacOS/Vim /Applications/MacVim.app/Contents/MacOS/vim
 
 echo '# Updating repos on remote'
 ssh deployer "cd ~/bin; git pull; cd ~/src/dotfiles; git pull"

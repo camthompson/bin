@@ -1,0 +1,109 @@
+#!/usr/bin/env python
+
+from __future__ import division
+import Image
+import sys, os
+import base64, zlib
+
+# This is for iOS devices with retina displays.
+height = 40
+
+# Statusbar image data for an iPhone 4, 4s, 5, 5c, or 5s portrait screenshot.
+# The data string is compressed and base64-encoded.
+img = {'mode': 'L',
+       'box':  (640, 40),
+       'lbox': (0, 0, 160, 40),
+       'cbox': (260, 0, 380, 40),
+       'rbox': (500, 0, 640, 40),
+       'data': ''.join(
+               ['eJztmnt0FNUdx+8k2U2WPJpwAEliw8sQiMYDlpgDKIIBAwhqBRKxQBWtj9JS',
+                'Ci2hxFiEVuIxelr1YEIUSyFtgbQVewwChRZsSirhFaS2Fs2rYmIeQLJ5LOzO',
+                't/fOzM5jz26ax2YzHu/nj5n53Ufu785+c+/93TuEcDgcDofD4XA4HA6Hw+Fw',
+                'OBwOh/PlxTJ3sD3gfIWZ3fDJYLvA+epymwO/8pFlycg7XH0VrdWH8zIsgfSp',
+                'TwTHhemsyBHG3LCxMiPdCbHUGOY2hrCsAfcwIFgXzdabSyvQMyoeHhx/S9Ca',
+                '4DUj4eUmnXtNL48KsGPdklNR8YAhYcI71yGeWahYa+sA+7YYXf4Md0ea/7pG',
+                'YAll7J27c5+nhlMYcK/7wO7H5PuIgjOdNe/OUVKzDn1mP5kfpVjLTrSf3xyk',
+                'GPl4SFc9q+zmHjaUXJbVb2f7QkPjAm/JkfkOj38QR/7XAu2bT2a5gO/oE+L+',
+                'K/nonCdZm2SP/6IbtGfoevJeBJH1hwlK7kWz6m8KXpLuk5vgKmsGtkjWG8Dn',
+                '5UCdPCQsR9GdOeJrcoUM8U19/XOJW3s4/uUlngtgvxizt5fvyU3ftHHH2VPP',
+                '3eqRN7WK+VS+cWZsEAmKvesnf2dm1bQAe+iLoUxtkv6Cc0pZ9BR2Cjj45I5r',
+                'aJ1IrUzgi7x1F4AirQrVX8dGypYDtOozRNHfZjkzFSbVX+QpWX8hZ7FrJLEs',
+                'cYrTqbUE9jlBZHQpDkqFPjpNPd/VKY32I+r/Fa7/A6LQ1UP9OQSx+xeQ8HqN',
+                'o/b1Uf20NLJFXeuuxw15j1yjaX9I0aWklDAfV3T/ugLFPjgV/d0HtNgIeRA4',
+                'Qt/eM0ABTayEOIuQYQ0QY9UqVH+N8tMGupgQFP39R0560ZT6S8rbfRWy/jJQ',
+                'L022v0QJvZ7AembE23ELvcViK70uA1v2CaWO2wx/QxREL1rzyv/RX0arVKpt',
+                'br8sjTuMra83ZM5zoGm+R4V5TXB4pg0Oj6HrRUV/WbRndDbdCbCx2dKKSwIZ',
+                'AxxiednAU2odTX830N7GSvqj81kaSxFq2aPp9LdI+mEk/b2K56SkeNgtZLjo',
+                'CJWsImwgbIpeTZhCv0Wva7DW+Df8pr/RV5VibaP7Yek4Ymi80KO5zNMsHAy5',
+                't+jsZVw+W7QghFpjT2f27gUOEIl2ZK9Q9GfNP8acakSnlZl0cv0GWQXkMiMN',
+                '+JNaSdNfOO3ueEl/BcArLGWa9Gg6/QlWq3WZrL+jWCSnNeEm2pXzsvF9FNNr',
+                'MtYRNhHQ2GtSV6lHJ3qnP/vbN/pypkAtV9APSyPU6NcUz/ZoOCWsqFLzq74t',
+                'SGkmwHISfwtabog/qKTkxfMLwINsNv0mM2xApVpE099iutoIlfSXYUd9ME15',
+                'hY6eJtQfI0vW30UoYewJ3E2n2n2ykYH36TXCyQaPHBpL2T6q99h16qX+RBz1',
+                '5UitWq62H5bGBEPbNV5ajDlgKPLe0D68voFgK+xjiVF/CcBx6WEj8ATZAfoj',
+                'Ma7hklqE6q85gZL8vSvA74mkv2m7qAZpDFOPyghz668BY2T7MO4jT2OnbEzH',
+                'aXYraY4j0VVlhBSKtDfhqfptp97qr92XI1oY4xD6bmncaWi70kuLa2n65S1p',
+                'NhKWtvkL+ryuP+/Rf8x0UYl56G8SUCo9rGEL2beB2yXrCjrUIvr9lza2bGf6',
+                'uwf4NSHptFK4ufXXgjjZLsVishrbZeN2XGC3Mf++cqCpbiJdL+YTa7HLgUPR',
+                'av3e6g++XoK/x78bDW13xXhpchvech8QhBeg2Bw/T0wd3iWe+hsHZeKgse3T',
+                'hI5qMySrCw1qEZ3+Km5iCUx/wZfQZiPb4YofYm79NUI5IziIB+j6dodsTFVW',
+                'HZH35yweSr7eUmElr7oyQ9I796v1/Tb+aeu4wn5YGkK7ofEXvDQZvFBn3Gvt',
+                '5ZsbILLhXJaenp5HA8P0ce7EaPdRxvNAJvkFIG2pW0X8U63H9v+epfxovrLE',
+                'ZvpjS8UsSzOOkDBz668OSbJ9DHNp+P9b2ZiFcq1k8HH7eGJr20sft7ni3al+',
+                'W/+NblWKyVFtHy0dxw2Ni6u9Bxe37Kxz1O1M8Zo3KOTqnM6jdhDb4hM60CKp',
+                'Zw9wB1kP/IAZycCf1Xpa/KEg6e9W4J0FwEqz66+crVMZNUghc3FCNh6VFrIK',
+                'z9JekBSp54/AfU7XW/0d8H3I6u/9v4c8mr/fW6MLrkt5170e0Q0KHvq7oVpk',
+                'i/H9kAPEz9FqIZMhB4hPAtlqPe/6I5VwlKIzioSaW3/Fyuo7Es4IkohWOfMl',
+                '3bQ13bmHsKUsFSGN8NWjXP/tP5OEglpHbcGofloqIXWG1j/z+oGL7ZiUeXxI',
+                't54FkrBoiaeA1dFhhO31iSPYSCCdtS0FfkfYINGZSKff89r5rk/9/Zh1j/5y',
+                'VnPrbznKJe+ekHZcPoF0DhD2KdLd5aJrqlnQMUnai16Ju9zpftSfv/muofVH',
+                'vReKOknzTprnwwM37vgjWZQ2Y4deoqPhlFUtcLGdFxqFVC6Z+UfoVzM+9Bfn',
+                'ov2j61yLufUX0yx1d1gj2DlpLj62EfaVxafqoLHXyQ6GSUTnbnotdKgflvnx',
+                '/NfvlOha3+9rb3n4h7gwPKBu9Qg1/h23lH3MQlI75H78kBnCHtm4OEyr4EN/',
+                '5BDQRH/FEHPrjzwMfLDhN+04ypwM/RCX38w9D5c6/D2On8oPhdfuEWZ3vaXW',
+                'P5f4sx7q7+cB//4l6hRttuUDtj4s8z3Bxh/0eSYziCz3+P6KzK+m3bDnykZY',
+                'MRvW/pGky/elP/qHttFbsMn1RzI+pj3qyJM/sY3azka1M2nuUknt7wfLT7a9',
+                'Yodrn02rb+bv/4Q5q24WiDBx5d1mfPW9JGTywqlRqjVy1rykbgp/GYlJG6NN',
+                'UsHjUyO1rCWbtE+II1MNqyXTf//M4XA4HA6Hw+FwOBwOh8PhcDgcDocTOP4H',
+                'BgjByw=='])}
+
+# Open the screenshot and cover over its statusbar.
+# Fill across the width with the colors along the left edge.
+screenshot = Image.open(sys.argv[1])
+width = screenshot.size[0]
+bar = (0, 0, width, height)
+for y in range(height):
+  p = screenshot.getpixel((0, y))[:3]
+  screenshot.paste(p, (0, y, width, y+1))
+
+# Decide whether the overlay text and graphics should be black or white.
+if sum(p)/3 > 192:        # p is the last color from the loop above
+  textcolor = 'black'
+else:
+  textcolor = 'white'
+
+# If the screenshot is the same width as img, use that as the mask.
+# Otherwise, construct a new mask from the left, center, and right graphics.
+bitmap = Image.fromstring(img['mode'],
+                          img['box'],
+                          zlib.decompress(base64.b64decode(img['data'])))
+if width == img['box'][0]:
+  mask = bitmap
+else:
+  mask = Image.new('L', (width, height), 'black')
+  limg = bitmap.crop(img['lbox'])
+  cimg = bitmap.crop(img['cbox'])
+  rimg = bitmap.crop(img['rbox'])
+  mask.paste(limg, (0, 0))
+  x = (mask.size[0] - cimg.size[0])//2
+  mask.paste(cimg, (x, 0))
+  x = mask.size[0] - rimg.size[0]
+  mask.paste(rimg, (x, 0))
+
+# Make the overlay.
+statusbar = Image.new('RGBA', (width, height), textcolor)
+statusbar.putalpha(mask)
+
+# Paste the overlay and save.
+screenshot.paste(statusbar, bar, statusbar)
+screenshot.save(sys.argv[1])

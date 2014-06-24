@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
-# This script is either from:
-# https://github.com/urbanautomaton/dotfiles/blob/master/bin/chruby-ctags
-# or
-# https://github.com/doxavore/dotfiles/blob/master/bin/chruby-ctags
-
 set -e
 shopt -s nullglob
 
@@ -36,7 +31,7 @@ index_LOAD_PATH() {
 }
 
 RUBIES=()
-[[ -d /opt/rubies/ ]] && RUBIES+=(/opt/rubies/*)
+[[ -d "$PREFIX/opt/rubies/" ]] && RUBIES+=("$PREFIX"/opt/rubies/*)
 [[ -d "$HOME/.rubies" ]] && RUBIES+=("$HOME"/.rubies/*)
 
 case "$#" in

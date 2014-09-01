@@ -37,3 +37,5 @@ mv "$HOME"/src/vendor/macvim/src/MacVim/build/release/MacVim.app /Applications/
 echo '# Updating repos on remote'
 ssh lana 'cd $HOME/bin; git pull; cd $HOME/src/dotfiles; git pull'
 ssh pair 'cd $HOME/bin; git pull; cd $HOME/src/dotfiles; git pull'
+ssh pair 'gem update --system'
+ssh pair 'gem update'

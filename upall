@@ -34,14 +34,6 @@ make
 rm -rf /Applications/MacVim.app/
 mv "$HOME"/src/vendor/macvim/src/MacVim/build/release/MacVim.app /Applications/
 
-echo '# Updating neovim'
-cd "$HOME"/src/vendor/neovim
-rm -rf build/
-git pull
-make clean
-make CMAKE_BUILD_TYPE=Release
-make install
-
 fix_open_with_duplicates
 
 echo '# Updating repos on remote'

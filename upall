@@ -34,6 +34,9 @@ make
 rm -rf /Applications/MacVim.app/
 mv "$HOME"/src/vendor/macvim/src/MacVim/build/release/MacVim.app /Applications/
 
+echo '# Updating neovim'
+brew reinstall --head neovim
+
 fix_open_with_duplicates
 
 echo '# Updating repos on remote'

@@ -17,7 +17,7 @@ echo '####################'
 
 echo '# Updating Homebrew'
 brew update
-brew upgrade
+brew upgrade --all
 echo '####################'
 
 echo '# Updating Vim and ZSH plugins'

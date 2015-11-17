@@ -25,15 +25,6 @@ cd "$HOME"/src/dotfiles
 ./update
 echo '####################'
 
-echo '# Updating MacVim'
-cd "$HOME"/src/vendor/macvim
-git pull
-make distclean
-./configure --with-features=huge --enable-luainterp --with-lua-prefix=/usr/local --enable-perlinterp --enable-pythoninterp --enable-python3interp --enable-rubyinterp --enable-cscope --with-macarchs=x86_64 --enable-gui=macvim
-make
-rm -rf /Applications/MacVim.app/
-mv "$HOME"/src/vendor/macvim/src/MacVim/build/release/MacVim.app /Applications/
-
 echo '# Updating neovim'
 brew reinstall --head neovim
 

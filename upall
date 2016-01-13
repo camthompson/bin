@@ -6,6 +6,9 @@ if [[ ! "$OSTYPE" == darwin* ]]; then
   return
 fi
 
+echo '# Updating dotfiles and bin'
+cd $HOME/bin; git pull; cd $HOME/src/dotfiles; git pull
+
 echo '# Updating rubygems'
 gem update --system
 gem update

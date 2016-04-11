@@ -19,7 +19,7 @@ brew update
 brew upgrade --all
 echo '####################'
 
-echo '# Updating Vim and ZSH plugins'
+echo '# Updating ZSH plugins'
 cd "$HOME"/src/dotfiles
 ./update
 echo '####################'

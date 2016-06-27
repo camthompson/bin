@@ -31,5 +31,4 @@ fix_open_with_duplicates
 
 echo '# Updating repos on remote'
 ssh pair 'cd $HOME/bin; git pull; cd $HOME/src/dotfiles; git pull'
-ssh pair 'gem update --system'
 ssh pair 'gem update'

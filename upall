@@ -29,6 +29,6 @@ brew reinstall --HEAD neovim
 
 fix_open_with_duplicates
 
-echo '# Updating repos on remote'
+echo '# Updating home and gems on pair'
 ssh pair 'cd $HOME/bin; git pull; cd $HOME/src/dotfiles; git pull'
 ssh pair 'gem update'

@@ -24,9 +24,6 @@ cd "$HOME"/src/dotfiles
 ./update
 echo '####################'
 
-echo '# Updating neovim'
-brew reinstall --HEAD neovim
-
 fix_open_with_duplicates
 
 echo '# Updating home and gems on pair'

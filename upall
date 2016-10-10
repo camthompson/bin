@@ -16,7 +16,7 @@ echo '####################'
 
 echo '# Updating Homebrew'
 brew update
-brew upgrade --all
+brew upgrade
 echo '####################'
 
 echo '# Updating ZSH plugins'

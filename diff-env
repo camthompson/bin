@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+OURS=$(cat .env .env.deploy.production .env.deploy.staging)
+THEIRS=$(ssh $1 -C "cd $PWD; cat .env .env.deploy.production .env.deploy.staging")
+diff <(echo "$OURS") <(echo "$THEIRS")

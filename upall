@@ -23,8 +23,3 @@ echo '####################'
 echo '# Updating ZSH plugins'
 cd "$HOME"/src/dotfiles
 ./update
-echo '####################'
-
-echo '# Updating home and gems on pair'
-ssh pair 'cd $HOME/bin; git pull; cd $HOME/src/dotfiles; git pull'
-ssh pair 'gem update'

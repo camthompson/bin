@@ -8,5 +8,6 @@ fi
 
 batt=$(pmset -g batt | awk '/Internal/ { print $4,$3 }' |\
   sed 's/;//g' | sed 's/^charging/▲/' | sed 's/^discharging/▼/' |\
-  sed -E 's/^(finishing charge|charged) //')
+  sed -E 's/^(finishing charge|charged) //') |\
+  sed -E 's/100% |//'
 echo "$batt | "

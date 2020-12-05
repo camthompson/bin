@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+mv /etc/zprofile{,.bak}
+SSHD_CONFIG=/etc/ssh/sshd_config
+sed -I '' 's/#PermitRootLogin prohibit-password/PermitRootLogin no/' $SSHD_CONFIG
+sed -I '' 's/#PasswordAuthentication yes/PasswordAuthentication no/' $SSHD_CONFIG
+sed -I '' 's/#ChallengeResponseAuthentication yes/ChallengeResponseAuthentication no/' $SSHD_CONFIG
+sed -I '' 's/UsePAM yes/UsePAM no/' $SSHD_CONFIG
+launchctl unload /System/Library/LaunchDaemons/ssh.plist
+launchctl load /System/Library/LaunchDaemons/ssh.plist

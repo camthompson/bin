@@ -19,7 +19,6 @@ echo '# Updating Homebrew'
 brew update
 brew upgrade
 brew upgrade --cask
-brew reinstall parcel-beta
 echo '####################'
 
 echo '# Updating ZSH plugins'

@@ -9,12 +9,6 @@ fi
 echo '# Updating dotfiles and bin'
 cd $HOME/bin; git pull; cd $HOME/src/dotfiles; git pull
 
-echo '# Updating rubygems'
-gem update --system
-gem update
-gem uninstall fileutils
-echo '####################'
-
 echo '# Updating Homebrew'
 brew update
 brew upgrade

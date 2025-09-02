@@ -6,7 +6,7 @@ if [[ ! "$OSTYPE" == darwin* ]]; then
   return
 fi
 
-batt=$(pmset -g batt | awk '/Internal/ { print $4,$3 }' |\
-  sed 's/;//g' | sed 's/^charging/▲/' | sed 's/^discharging/▼/' |\
+batt=$(pmset -g batt | awk '/Internal/ { print $4,$3 }' |
+  sed 's/;//g' | sed 's/^charging/▲/' | sed 's/^discharging/▼/' |
   sed -E 's/^(finishing charge|charged) //')
-echo "$batt | "
+echo "$batt"

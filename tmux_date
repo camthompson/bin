@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# Print the current date in ISO 8601 format.
-date +"%F"
+# Print the abbreviated day of the week and day of the month.
+date +"%a %d"
 
 exit 0
